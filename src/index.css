@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kanit&display=swap');
+
+html {
+  min-width: 360px;
+  font-size: 1.5em;
+  background-color: blue;
+}
+
+body {
+  /* font-family: 'Dancing Script', cursive; */
+  font-family: 'Kanit', sans-serif;
+  background-color: aliceblue;
+}
