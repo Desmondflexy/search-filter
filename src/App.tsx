@@ -10,8 +10,11 @@ function App() {
     const searchTerm = evt.target.value;
     setSearchTerm(searchTerm);
     setPeople(PEOPLE.filter(person => {
-      if (!searchTerm) return true;
-      return (person.first_name + person.last_name).toLowerCase().includes(searchTerm.toLowerCase())
+      const fullName = `${person.first_name} ${person.last_name}`;
+      const searchpool = [
+        fullName,
+      ];
+      return searchpool.some(name => name.toLowerCase().includes(searchTerm.toLowerCase()));
     }));
   }
 
@@ -21,11 +24,9 @@ function App() {
         <h2>Search Filter ({people.length})</h2>
         <input autoFocus type="search" placeholder='Search...' value={searchTerm} onChange={handleSearch} />
         <ul>
-          {people.map(person => {
-              return (
-                <li key={person.id}>{person.first_name} {person.last_name}</li>
-              )
-            })}
+          {people.map(person => (
+            <li key={person.id}>{person.first_name} {person.last_name}</li>
+          ))}
         </ul>
       </div>
     </>
