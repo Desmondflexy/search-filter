@@ -27,7 +27,8 @@ function App() {
         );
     });
 
-    const paginatedResult = paginate(filteredPeople, currentPage, 20);
+    const resultsPerPage = 20;
+    const paginatedResult = paginate(filteredPeople, currentPage, resultsPerPage);
 
     let paginationButtonJsx = null;
     if (paginatedResult.totalPages > 1)
