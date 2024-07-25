@@ -1,13 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kanit&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 html {
-  min-width: 360px;
-  font-size: 1.5em;
-  background-color: blue;
+    min-width: 360px;
+    font-size: 1.5em;
+    background-color: blue;
 }
 
 body {
-  /* font-family: 'Dancing Script', cursive; */
-  font-family: 'Kanit', sans-serif;
-  background-color: aliceblue;
+    /* font-family: 'Dancing Script', cursive; */
+    font-family: 'Kanit', sans-serif;
+    background-color: aliceblue;
+}
+
+.App {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    li {
+        padding: 10px;
+        border-bottom: 2px solid #ccc;
+    }
+
+    input {
+        padding: 5px 10px;
+        border-radius: 4px;
+        max-width: 300px;
+        font-size: 20px;
+    }
+
+    .no-result {
+        color: red;
+    }
+
+    .next-prev-btn {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        background-color: rgb(204, 227, 227);
+    }
 }
