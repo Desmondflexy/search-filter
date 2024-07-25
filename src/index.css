@@ -6,7 +6,7 @@
 
 html {
     min-width: 360px;
-    font-size: 1.5em;
+    font-size: 1em;
     background-color: blue;
 }
 
@@ -48,5 +48,11 @@ body {
         justify-content: space-between;
         margin: 10px 0;
         background-color: rgb(204, 227, 227);
+    }
+}
+
+@media screen and (min-width: 600px) {
+    html {
+        font-size: 1.5em;
     }
 }
