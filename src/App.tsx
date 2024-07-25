@@ -29,14 +29,15 @@ function App() {
 
     const resultsPerPage = 20;
     const paginatedResult = paginate(filteredPeople, currentPage, resultsPerPage);
+    const totalPages = paginatedResult.totalPages;
 
     let paginationButtonJsx = null;
-    if (paginatedResult.totalPages > 1)
+    if (totalPages > 1)
         paginationButtonJsx = (
             <div className="next-prev-btn">
-                <button disabled={currentPage === 1} onClick={gotoPrevPage}>Prev Page</button>
-                <span>Page {currentPage}/{paginatedResult.totalPages}</span>
-                <button disabled={currentPage === paginatedResult.totalPages} onClick={gotoNextPage}>Next Page</button>
+                <button className={currentPage===1?'red':''} onClick={gotoPrevPage}>Prev Page</button>
+                <span>Page {currentPage}/{totalPages}</span>
+                <button className={currentPage===totalPages?'red':''} onClick={gotoNextPage}>Next Page</button>
             </div>
         );
 
@@ -47,10 +48,14 @@ function App() {
 
     function gotoPrevPage() {
         setCurrentPage(currentPage - 1);
+        if (currentPage === 1)
+            setCurrentPage(totalPages);
     }
 
     function gotoNextPage() {
         setCurrentPage(currentPage + 1);
+        if (currentPage === totalPages)
+            setCurrentPage(1);
     }
 
     function paginate(data: IPerson[], currentPage: number, pageSize: number) {
