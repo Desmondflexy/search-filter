@@ -14,11 +14,6 @@ function App() {
     const [searchValue, setSearchValue] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(e.currentTarget.value);
-        setCurrentPage(1);
-    }
-
     const filteredPeople = PEOPLE.filter(person => {
         const search = searchValue.toLowerCase();
         if (!search.trim()) return true;
@@ -32,26 +27,7 @@ function App() {
         );
     });
 
-    const paginate = (data: IPerson[], currentPage: number, pageSize: number) => {
-        const startIndex = (currentPage - 1) * pageSize;
-        const endIndex = currentPage * pageSize;
-        return {
-            currentPage,
-            pageSize,
-            totalPages: Math.ceil(data.length / pageSize),
-            data: data.slice(startIndex, endIndex),
-        }
-    }
-
     const paginatedResult = paginate(filteredPeople, currentPage, 20);
-
-    const gotoPrevPage = () => {
-        setCurrentPage(currentPage - 1);
-    }
-
-    const gotoNextPage = () => {
-        setCurrentPage(currentPage + 1);
-    }
 
     let paginationButtonJsx = null;
     if (paginatedResult.totalPages > 1)
@@ -62,6 +38,28 @@ function App() {
                 <button disabled={currentPage === paginatedResult.totalPages} onClick={gotoNextPage}>Next Page</button>
             </div>
         );
+
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setSearchValue(e.currentTarget.value);
+        setCurrentPage(1);
+    }
+
+    function gotoPrevPage() {
+        setCurrentPage(currentPage - 1);
+    }
+
+    function gotoNextPage() {
+        setCurrentPage(currentPage + 1);
+    }
+
+    function paginate(data: IPerson[], currentPage: number, pageSize: number) {
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = currentPage * pageSize;
+        return {
+            totalPages: Math.ceil(data.length / pageSize),
+            data: data.slice(startIndex, endIndex),
+        }
+    }
 
     return (
         <div className='App'>
