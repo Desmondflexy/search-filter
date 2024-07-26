@@ -15,7 +15,7 @@ function App() {
     const [currentPage, setCurrentPage] = useState(1);
 
     const filteredPeople = PEOPLE.filter(person => {
-        const search = searchValue.toLowerCase();
+        const search = searchValue.toLowerCase().trim();
         if (!search.trim()) return true;
         const firstName = person.first_name.toLowerCase();
         const lastName = person.last_name.toLowerCase();
